@@ -3,89 +3,111 @@ My project is a simulator one of the game in online casino game Bitkong. The goa
 With this project, users can enjoy playing Bitkong without leaving their homes. The main features of the project include the ability to play Bitkong, display graphical elements of the game, and process the results. We have also added some unique features such as enhanced graphical effects and additional bonuses to make the gameplay even more engaging.
 
 
-# Er-diagram and his attribute present 
+## Diagrams
+In this section, you will find the conceptual diagram and logical diagram that describe the architecture and logic of our project:
+1. Conceptual Diagram - This diagram presents the overall concept and structure of the project, showing the key components and their interactions.
+2. Logical Diagram - This diagram provides a more detailed description of the logic and interactions of the project's components.
+
+### [Conceptual Diagram](#conceptual)
+```mermaid
+erDiagram   
+    user ||--o{ game : plays
+    game ||--|{ GameLevel : has
+    user ||--o{ client_seed : has
+    user ||--o{ server_seed : has
+    client_seed ||--o{ game : uses
+    server_seed ||--o{ game : uses
+    game ||--o| top_win : is
+    user ||--o{ account : has
+    account }o--|| currency : in
+    account ||--o{ transaction : has 
+```
+
+### Logical Diagram
 ```mermaid
 erDiagram
-    User ||--o{ Game : plays
-    Game ||--|{ GameLevel : has
-    User ||--o{ ClientSeed : has
-    User ||--o{ ServerSeed : has
-    ClientSeed ||--o{ Game : uses
-    ServerSeed ||--o{ Game : uses
-    Game ||--o| TopWin : is
-    User ||--o{ Account : has
-    Account }o--|| Currency : in
-    Account ||--o{ Transaction : has 
-    User {
+    user ||--o{ game : plays
+    game ||--|{ GameLevel : has
+    user ||--o{ client_seed : has
+    user ||--o{ server_seed : has
+    client_seed ||--o{ game : uses
+    server_seed ||--o{ game : uses
+    game ||--o| topwin : is
+    user ||--o{ account : has
+    account }o--|| currency : in
+    account ||--o{ transaction : has 
+    user {
         int id PK
-        varchar Login
-        varchar Password
-        varchar FirstName
-        varchar LastName
-        varchar Email
-        varchar Phone
-        varchar Role
-        datetime DateCreate
-        datetime DateUpdate
+        varchar login
+        varchar password
+        varchar first_name
+        varchar last_name
+        varchar email
+        varchar phone
+        varchar role
+        datetime date_create
+        datetime date_update
     }
-    ClientSeed {
+    client_seed {
         int id PK
-        int UserID FK
-        varchar Hash
-        datetime DateCreate
-        datetime DateUpdate
+        int user_id FK
+        varchar hash
+        datetime date_create
+        datetime date_update
     }
-    ServerSeed {
+    server_seed {
         int id PK
-        int UserID FK
-        varchar Hash
-        datetime DateCreate
-        datetime DateUpdate
+        int user_id FK
+        varchar hash
+        datetime date_create
+        datetime date_update
     }
-    Game {
+    game {
         int id PK
-        int UserID FK
-        int ClientSeed FK
-        int ServerSeed FK
-        varchar Name
-        int Bet
+        int user_id FK
+        int client_seed_id FK
+        int server_seed_id FK
+        varchar name
+        int bet
 
-        varchar Status
-        datetime DateCreate
-        datetime DateUpdate
+        varchar status
+        datetime date_create
+        datetime date_update
 
     }
     GameLevel {
         int id PK
-        int GameID FK
-        datetime DateCreate
-        datetime DateUpdate
+        int game_id FK
+        datetime date_create
+        datetime date_update
 
     }
-    TopWin {
+    topwin {
         int id PK
-        int GameID FK
-        datetime DateCreate
-        datetime DateUpdate
+        int game_id FK
+        datetime date_create
+        datetime date_update
     }
-    Account {
+    account {
         int id PK
-        int UserID FK
-        datetime DateCreate
-        datetime DateUpdate
+        int user_id FK
+        datetime date_create
+        datetime date_update
 
     }
-    Currency {
+    currency {
         int id PK
         
-        datetime DateCreate
-        datetime DateUpdate
+        datetime date_create
+        datetime date_update
 
     }
-    Transaction {
+    transaction {
         int id PK
 
-        datetime DateCreate
-        datetime DateUpdate
+        datetime date_create
+        datetime date_update
         
     }
+```
+
