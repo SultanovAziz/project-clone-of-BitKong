@@ -23,7 +23,7 @@ erDiagram
     account ||--o{ transaction : has 
 ```
 
-### Logical Diagram
+### [Logical Diagram](#logical)
 ```mermaid
 erDiagram
     user ||--o{ game : plays
