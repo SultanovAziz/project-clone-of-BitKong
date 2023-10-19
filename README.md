@@ -1,6 +1,6 @@
-# project-clone-of-BitKong
-Clone one of game in bitkong.com
-
+# Bitkong Simulator
+My project is a simulator one of the game in online casino game Bitkong. The goal of this project is to provide users with an authentic experience of playing Bitkong in a virtual environment. 
+With this project, users can enjoy playing Bitkong without leaving their homes. The main features of the project include the ability to play Bitkong, display graphical elements of the game, and process the results. We have also added some unique features such as enhanced graphical effects and additional bonuses to make the gameplay even more engaging.
 
 
 # Er-diagram and his attribute present 
