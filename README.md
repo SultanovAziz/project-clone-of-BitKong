@@ -27,7 +27,7 @@ erDiagram
 ```mermaid
 erDiagram
     user ||--o{ game : plays
-    game ||--|{ GameLevel : has
+    game ||--|{ game_step : has
     user ||--o{ client_seed : has
     user ||--o{ server_seed : has
     client_seed ||--o{ game : uses
