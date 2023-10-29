@@ -75,11 +75,12 @@ erDiagram
         datetime date_update
 
     }
-    GameLevel {
-        int id PK
-        int game_id FK
-        datetime date_create
-        datetime date_update
+    game_step {
+        int game_id PK
+        smallint step PK
+        jsonb result
+        smallint selected
+        datetime date_selected
 
     }
     topwin {
