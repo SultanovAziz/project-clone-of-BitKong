@@ -1,9 +1,14 @@
 # Bitkong Simulator
+
+
+
 My project is a simulator one of the game in online casino game Bitkong. The goal of this project is to provide users with an authentic experience of playing Bitkong in a virtual environment. 
 With this project, users can enjoy playing Bitkong without leaving their homes. The main features of the project include the ability to play Bitkong, display graphical elements of the game, and process the results. We have also added some unique features such as enhanced graphical effects and additional bonuses to make the gameplay even more engaging.
 
 
 ## Diagrams
+
+
 In this section, you will find the conceptual diagram and logical diagram that describe the architecture and logic of our project:
 1. Conceptual Diagram - This diagram presents the overall concept and structure of the project, showing the key components and their interactions.
 2. Logical Diagram - This diagram provides a more detailed description of the logic and interactions of the project's components.
@@ -39,41 +44,35 @@ erDiagram
     user {
         int id PK
         varchar login
-        varchar password
-        varchar first_name
-        varchar last_name
+        char(60) password
+        varchar username
         varchar email
-        varchar phone
-        varchar role
+        datetime last_visit
         datetime date_create
-        datetime date_update
     }
     client_seed {
         int id PK
         int user_id FK
-        varchar hash
-        datetime date_create
-        datetime date_update
+        char(32) value
     }
     server_seed {
         int id PK
         int user_id FK
-        varchar hash
-        datetime date_create
-        datetime date_update
+        char(64) value
+        int nonce
+        datetime date_reval
     }
     game {
         int id PK
         int user_id FK
         int client_seed_id FK
         int server_seed_id FK
-        varchar name
+        int nonce FK
         int bet
-
+        decimal currency
+        decimal prize
         varchar status
-        datetime date_create
-        datetime date_update
-
+        datetime date_end
     }
     game_step {
         int game_id PK
@@ -81,34 +80,33 @@ erDiagram
         jsonb result
         smallint selected
         datetime date_selected
-
     }
     topwin {
-        int id PK
         int game_id FK
+        decimal prize
         datetime date_create
         datetime date_update
     }
     account {
         int id PK
         int user_id FK
+        int currency_id FK
+        decimal balance
         datetime date_create
         datetime date_update
 
     }
     currency {
         int id PK
-        
-        datetime date_create
-        datetime date_update
-
+        char(10) iso_code
+        int value
     }
     transaction {
         int id PK
-
+        int account_id
+        decimal summa
+        varchar type
         datetime date_create
-        datetime date_update
-        
     }
 ```
 
