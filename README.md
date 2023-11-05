@@ -38,40 +38,49 @@ erDiagram
     client_seed ||--o{ game : uses
     server_seed ||--o{ game : uses
     game ||--o| topwin : is
+    game }|--o| currency : has
+    game }o--|| game_difficulty : has
     user ||--o{ account : has
     account }o--|| currency : in
     account ||--o{ transaction : has 
     user {
         int id PK
-        varchar login
         char(60) password
         varchar username
         varchar email
         datetime last_visit
         datetime date_create
+        datetime date_update
     }
     client_seed {
         int id PK
         int user_id FK
-        char(32) value
+        varchar(32) value
+        datetime date_create
     }
     server_seed {
         int id PK
         int user_id FK
         char(64) value
         int nonce
-        datetime date_reval
+        datetime date_reveal
+        datetime date_create
     }
     game {
         int id PK
         int user_id FK
         int client_seed_id FK
         int server_seed_id FK
-        int nonce FK
+        int currency_id FK
+        int game_difficulty_id FK
+        int nonce
         int bet
-        decimal currency
+        decimal base_currency_exchange_rate
         decimal prize
-        varchar status
+        decimal coefficient
+        smallint step
+        enum status
+        datetime date_start
         datetime date_end
     }
     game_step {
@@ -80,6 +89,11 @@ erDiagram
         jsonb result
         smallint selected
         datetime date_selected
+    }
+    game_difficulty {
+        int id PK
+        varchar name
+        decimal coefficient
     }
     topwin {
         int game_id FK
@@ -98,14 +112,14 @@ erDiagram
     }
     currency {
         int id PK
-        char(10) iso_code
-        int value
+        char(3) iso_code
+        decimal base_currency_exchange_rate
     }
     transaction {
         int id PK
         int account_id
-        decimal summa
-        varchar type
+        decimal summ
+        enum type
         datetime date_create
     }
 ```
