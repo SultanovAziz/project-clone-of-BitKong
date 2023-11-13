@@ -17,12 +17,14 @@ In this section, you will find the conceptual diagram and logical diagram that d
 ```mermaid
 erDiagram   
     user ||--o{ game : plays
-    game ||--|{ GameLevel : has
+    game ||--|{ game_step : has
     user ||--o{ client_seed : has
     user ||--o{ server_seed : has
     client_seed ||--o{ game : uses
     server_seed ||--o{ game : uses
-    game ||--o| top_win : is
+    game ||--o| topwin : is
+    game }|--o| currency : has
+    game }o--|| game_difficulty : has
     user ||--o{ account : has
     account }o--|| currency : in
     account ||--o{ transaction : has 
